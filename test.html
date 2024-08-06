@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Hover Swap</title>
+    <style>
+        .hover-container {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hover-container img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.6s;
+        }
+
+        .hover-container img.back {
+            opacity: 0;
+        }
+
+        .hover-container:hover img.back {
+            opacity: 1;
+        }
+
+        .hover-container:hover img.front {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="hover-container">
+        <img src="https://th.bing.com/th/id/OIP.U_VJuupQohwnzXcKMztqWgHaEo?rs=1&pid=ImgDetMain" alt="Front Image" class="front">
+        <img src="https://th.bing.com/th/id/OIP.aJaxHn2LF30U-Y56DCqZmwAAAA?pid=ImgDet&w=300&h=188&rs=1" alt="Back Image" class="back">
+    </div>
+</body>
+</html>

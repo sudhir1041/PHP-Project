@@ -1,4 +1,11 @@
 <?php
+
+if (isset($_GET["update"]) && $_GET["update"] == "yes") {
+    echo "<script>";
+    echo "alert('Data updated successfully');";
+    echo "</script>";
+}
+
     $con = new mysqli("localhost", "root", "", "employee");
 
     $qry = "SELECT * FROM employeedata";

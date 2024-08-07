@@ -36,7 +36,7 @@ $con->close();
         <h2 class="form-heading">Employee Details Update</h2>
         <?php
         while($row = $result->fetch_assoc()) {
-            echo "<form class='employee-form' action='/submit-employee-details' method='POST'>";
+            echo "<form class='employee-form' action='editsave.php' method='POST'>";
             echo "   <div class='form-group'>";
             echo "        <label class='form-label' for='employeeNo'>Employee No:</label>";
             echo "        <input class='form-input' type='text' value='".$row["Employee_no"]."' name='employeeNo' readonly required>";
@@ -58,7 +58,7 @@ $con->close();
             echo "    </div>";
 
             echo "   <div class='form-group'>";
-            echo "        <input class='form-submit' type='submit' value='Submit'>";
+            echo "        <input class='form-submit' name='submit' type='submit' value='Submit'>";
             echo "    </div>";
             echo "</form>";
         }

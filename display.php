@@ -1,24 +1,9 @@
 <?php
+    $con = new mysqli("localhost", "root", "", "employee");
 
-        $con = new mysqli("localhost", "root", "", "employee");
-
-        $qry= "select * from employeedata";
-
-        $result = $con->query($qry);
-
-        while($row=$result->fetch_assoc())
-        {
-            
-                echo "<tr class="table-row">";
-                echo "<td class="table-cell">".$row["Employee_no"]."</td>";
-                echo "<td class="table-cell">".$row["Name"]."</td>";
-                echo "<td class="table-cell">".$row["Designation"]."</td>";
-                echo "<td class="table-cell">".$row["Salary"]."</td>";
-                echo "</tr>";
-            
-        }
-
-        ?>
+    $qry = "SELECT * FROM employeedata";
+    $result = $con->query($qry);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +21,7 @@
             <li><a href="update.php">Update</a></li>
             <li><a href="display.php">Display</a></li>
             <li><a href="contact.php">Contact</a></li>
+            <li><a href="search.php">Search</a></li>
         </ul>
     </nav>
     <section class="main">
@@ -51,8 +37,20 @@
                 </tr>
             </thead>
             <tbody class="table-body">
+                <?php
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr class='table-row'>";
+                        echo "<td class='table-cell'>".$row["Employee_no"]."</td>";
+                        echo "<td class='table-cell'>".$row["Name"]."</td>";
+                        echo "<td class='table-cell'>".$row["Designation"]."</td>";
+                        echo "<td class='table-cell'>".$row["Salary"]."</td>";
+                        echo "</tr>";
+                    }
+                $con->close();
+                ?>
             </tbody>
         </table>
+    </div>
     </section>
 </body>
 </html>

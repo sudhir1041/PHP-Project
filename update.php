@@ -1,9 +1,16 @@
+<?php
+    $con = new mysqli("localhost", "root", "", "employee");
+
+    $qry = "SELECT * FROM employeedata";
+    $result = $con->query($qry);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update</title>
+    <title>Display</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,36 +21,46 @@
             <li><a href="update.php">Update</a></li>
             <li><a href="display.php">Display</a></li>
             <li><a href="contact.php">Contact</a></li>
+            <li><a href="search.php">Search</a></li>
         </ul>
     </nav>
     <section class="main">
-    <div class="form-container">
-        <h2 class="form-heading">Employee Details Update</h2>
-        <form class="employee-form" action="/submit-employee-details" method="POST">
-            <div class="form-group">
-                <label class="form-label" for="employeeNo">Employee No:</label>
-                <input class="form-input" type="text" id="employeeNo" name="employeeNo" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="name">Name:</label>
-                <input class="form-input" type="text" id="name" name="name" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="designation">Designation:</label>
-                <input class="form-input" type="text" id="designation" name="designation" required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label" for="salary">Salary:</label>
-                <input class="form-input" type="number" id="salary" name="salary" required>
-            </div>
-
-            <div class="form-group">
-                <input class="form-submit" type="submit" value="Submit">
-            </div>
-        </form>
+    <div class="table-container">
+        <h2 class="table-heading">Employee Data</h2>
+        <table class="employee-table">
+            <thead class="table-header">
+                <tr class="header-row">
+                    <th class="table-header-cell">Employee No</th>
+                    <th class="table-header-cell">Name</th>
+                    <th class="table-header-cell">Designation</th>
+                    <th class="table-header-cell">Salary</th>
+                    <th class="table-header-cell"></th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <?php
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr class='table-row'>";
+                        echo "<td class='table-cell'>".$row["Employee_no"]."</td>";
+                        echo "<td class='table-cell'>".$row["Name"]."</td>";
+                        echo "<td class='table-cell'>".$row["Designation"]."</td>";
+                        echo "<td class='table-cell'>".$row["Salary"]."</td>";
+                        echo "<td class='table-cell'>
+                            <a href='edit.php?empno=".$row["Employee_no"]."'>
+                                <img src='edit.webp' width='25px' height='25px' alt=''>
+                            </a>
+                            <a href='delete.php?empno=".$row["Employee_no"]."'>
+                                <img src='del.jpeg' width='25px' height='25px' alt=''>
+                            </a>
+                            
+                        </td>";
+                        
+                        echo "</tr>";
+                    }
+                $con->close();
+                ?>
+            </tbody>
+        </table>
     </div>
     </section>
 </body>
